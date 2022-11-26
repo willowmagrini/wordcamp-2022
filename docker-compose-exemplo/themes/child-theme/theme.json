@@ -49,6 +49,18 @@
                         "padding": "var(--wp--custom--spacing--small)"
                     }
                 },
+                "core/quote": {
+                    "typography": {
+                        "fontFamily": "Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif",
+                        "fontSize": "28px"
+                    },
+                    "color": {
+                        "background": "#ffffff9e"
+                    },
+                    "spacing": {
+                        "padding": "100px"
+                    }
+                },
                 "core/group": {
                     "fontFamily": "Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif",
                     "spacing": {
