@@ -1,0 +1,63 @@
+{
+    "version": 2,
+        "settings": {
+            "color": {
+                "palette": [
+                    {
+                        "slug": "foreground",
+                        "color": "#FFFFFF",
+                        "name": "Foreground"
+                    },
+                    {
+                        "slug": "background",
+                        "color": "#111F29",
+                        "name": "Background"
+                    },
+                    {
+                        "slug": "primary",
+                        "color": "#D6FDFF",
+                        "name": "Primary"
+                    },
+                    {
+                        "slug": "secondary",
+                        "color": "#FDFCDC",
+                        "name": "Secondary"
+                    },
+                    {
+                        "slug": "tertiary",
+                        "color": "#FED9B7",
+                        "name": "Tertiary"
+                    },
+                    {
+                        "slug": "accent",
+                        "color": "#E94435",
+                        "name": "Accent"
+                    }
+                ]
+            }
+        },
+        "styles": {
+            "blocks": {
+                "core/post-title": {
+                    "typography": {
+                        "fontFamily": "Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif"
+                    },
+                    "color": {
+                        "background": "var(--wp--preset--color--tertiary)"
+                    },
+                    "spacing": {
+                        "padding": "var(--wp--custom--spacing--small)"
+                    }
+                },
+                "core/group": {
+                    "fontFamily": "Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif",
+                    "spacing": {
+                        "margin": {
+                            "top": "0",
+                            "bottom": "0"
+                        }
+                    }
+                }
+            }
+        }
+    }

@@ -1,0 +1,62 @@
+version: '2'
+
+services:
+  wordpress:
+    stdin_open: true
+    tty: true
+    build:
+      context: .
+      dockerfile: ./compose/local/wordpress/Dockerfile
+    depends_on:
+      - mariadb
+    ports:
+      - 80:80
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DEBUG: 1
+    volumes:
+      # descomentar linha abaixo se quiser mapear todos os arquivos do WordPress, desta forma você pode ver pelo seu editor de codigo todos os arquivos e debugar problemas. A pasta wp-root ja esta no .gitignore e não sera commitada
+      # - ./wp-root:/var/www/html/
+      
+      # mapeamento do tema a ser desenvolvido
+      - ./themes/child-theme:/var/www/html/wp-content/themes/child-theme
+      
+      # mapeamento do plugin a ser desenvolvido
+      - ./plugins/php-info:/var/www/html/wp-content/plugins/phpinfo
+      
+      # descomente a linha abaixo para mapear o .htacces e ter mais algumas opções de configuração
+      # - ./compose/local/wordpress/htaccess:/var/www/html/.htaccess
+      
+      #descomente a linha abaixo para adicionar arquivo de configuração do php
+      # - ./compose/local/wordpress/php/extra.ini:/usr/local/etc/php/conf.d/extra.ini
+    
+  mariadb:
+    image: mariadb:10.4
+    volumes:
+      # Mapeamento do volume que persiste os dados do banco
+      - ./mariadb_data:/var/lib/mysql
+      # Se A pasta /var/lib/mysql do container não contiver dados o arquivo que estiver nessa pasta ira ser utilizado como base a ser importada. Por exemplo adicionando um dump.sql na pasta ./compose/local/mariadb/data/ ele sera importado.
+      - ./compose/local/mariadb/data:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: therootpassword
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+  
+  # phpmyadmin:
+  #     volumes:
+  #       - ./compose/local/phpmyadmin-config.php:/etc/phpmyadmin/config.user.inc.php
+  #     depends_on:
+  #       - mariadb
+  #     image: phpmyadmin/phpmyadmin
+  #     restart: always
+  #     ports:
+  #       - '8081:80'
+  #     environment:
+  #       - PMA_HOST=mariadb
+  #       - MYSQL_ROOT_PASSWORD=wordpress
+  #       - MYSQL_USER=wordpress
+  #       - MYSQL_DATABASE=wordpress
+  #       - MYSQL_PASSWORD=wordpress
